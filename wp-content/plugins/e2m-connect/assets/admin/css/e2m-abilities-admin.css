@@ -1,0 +1,79 @@
+/**
+ * Dark theme for the standalone "AI Abilities" (Custom Abilities) admin page.
+ * Matches the "Onyx Lime" hub theme: true-black, neon-lime accent, Space Grotesk.
+ * Scoped to body.e2m-abilities-dark so it never leaks to other wp-admin screens.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+body.e2m-abilities-dark #wpcontent,
+body.e2m-abilities-dark #wpbody-content,
+body.e2m-abilities-dark.wp-admin { background: #000; }
+
+body.e2m-abilities-dark .wrap { color: #EDEDED; }
+.e2m-abilities-admin { max-width: 940px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+/* E2M brand lockup — keeps the logo present on this standalone tab too */
+.e2m-abilities-brand { display: flex; align-items: center; gap: 10px; padding: 14px 0 4px; }
+.e2m-abilities-brand img { display: block; height: 28px; width: auto; }
+.e2m-abilities-brand span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .2px; color: #fff; }
+.e2m-abilities-brand span b { color: #FF6A1A; font-weight: 700; }
+.e2m-abilities-admin h1, .e2m-abilities-admin h2 {
+  font-family: 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #fff;
+}
+.e2m-abilities-admin h1 { font-weight: 700; }
+.e2m-abilities-admin h1::after {
+  content: ""; display: block; width: 46px; height: 3px; margin-top: 8px; border-radius: 3px;
+  background: #FF6A1A;
+}
+.e2m-abilities-admin h2 { margin-top: 30px; padding-top: 20px; border-top: 1px solid #1F1F1F; }
+.e2m-abilities-admin > p, .e2m-abilities-admin .description { color: rgba(255, 255, 255, .6); }
+
+.e2m-abilities-admin .form-table {
+  background: #121212; border: 1px solid #242424; border-radius: 6px; padding: 6px 18px; margin-top: 10px;
+}
+.e2m-abilities-admin .form-table th { color: rgba(255, 255, 255, .82); font-weight: 600; }
+.e2m-abilities-admin .form-table td { color: #EDEDED; }
+
+.e2m-abilities-admin input[type="text"],
+.e2m-abilities-admin textarea,
+.e2m-abilities-admin select {
+  background: #0E0E0E; color: #EDEDED; border: 1px solid #2E2E2E; border-radius: 6px; box-shadow: none;
+}
+.e2m-abilities-admin input[type="text"]::placeholder,
+.e2m-abilities-admin textarea::placeholder { color: rgba(255, 255, 255, .4); }
+.e2m-abilities-admin input[type="text"]:focus,
+.e2m-abilities-admin textarea:focus,
+.e2m-abilities-admin select:focus {
+  border-color: #FF6A1A; box-shadow: 0 0 0 3px rgba(255, 106, 26, .16); outline: none; color: #fff;
+}
+.e2m-abilities-admin input[type="checkbox"] { border-color: #404040; background: #0E0E0E; border-radius: 3px; }
+.e2m-abilities-admin input[type="checkbox"]:checked { background: #FF6A1A; border-color: #FF6A1A; }
+
+.e2m-abilities-admin .button-primary, .e2m-abilities-admin #submit {
+  background: linear-gradient(135deg, #FF8A3D 0%, #E2540B 100%) !important;
+  border: none !important; color: #fff !important; font-weight: 600; text-shadow: none !important;
+  box-shadow: none !important; border-radius: 6px;
+}
+.e2m-abilities-admin .button-primary:hover { filter: brightness(1.05); }
+.e2m-abilities-admin .button { background: #1A1A1A; color: #EDEDED; border-color: #2E2E2E; border-radius: 6px; }
+.e2m-abilities-admin .button:hover { background: #222; border-color: #404040; color: #fff; }
+.e2m-abilities-admin .button-link-delete { background: transparent; border: none; color: #FCA5A5; }
+.e2m-abilities-admin .button-link-delete:hover { color: #FF8787; background: transparent; }
+
+.e2m-abilities-admin .widefat {
+  background: #121212; border: 1px solid #242424; border-radius: 6px; overflow: hidden; color: #EDEDED;
+}
+.e2m-abilities-admin .widefat thead th, .e2m-abilities-admin .widefat th { color: rgba(255, 255, 255, .7); border-color: #242424; }
+.e2m-abilities-admin .widefat td { border-color: #1F1F1F; color: #EDEDED; }
+.e2m-abilities-admin .widefat .description { color: rgba(255, 255, 255, .5); }
+.e2m-abilities-admin .striped > tbody > :nth-child(odd),
+.e2m-abilities-admin .widefat.striped tbody tr:nth-child(odd) { background: rgba(255, 255, 255, .025); }
+.e2m-abilities-admin .widefat tbody tr:hover { background: rgba(255, 106, 26, .06); }
+.e2m-abilities-admin strong { color: #fff; }
+
+.e2m-abilities-admin code {
+  background: rgba(255, 106, 26, .12); color: #FF6A1A; border: 1px solid rgba(255, 106, 26, .25);
+  border-radius: 4px; padding: 1px 6px;
+}
+body.e2m-abilities-dark .notice { background: #121212; color: #EDEDED; border: 1px solid #2E2E2E; border-left-width: 4px; }
+body.e2m-abilities-dark .notice-success { border-left-color: #22C55E; }
+body.e2m-abilities-dark .notice-error { border-left-color: #F87171; }

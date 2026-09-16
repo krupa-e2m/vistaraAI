@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E2M Connect — Design System</title>
+
+<!-- The production CSS. The showcase wraps everything in .so-shell so the
+     canonical input/select/textarea rules and the shell tokens all apply. -->
+<link rel="stylesheet" href="admin-design-system.css">
+
+<style>
+/* ───────── Showcase-only chrome (everything else comes from tokens) ───────── */
+body { margin: 0; background: var(--so-bg-darkest, #0a0a0a); }
+
+.ds-doc {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+    background: var(--so-bg-lightest);
+    color: var(--so-text-default);
+    font-family: var(--so-font);
+    font-size: var(--so-text-base);
+    line-height: var(--so-leading-normal);
+}
+
+.ds-nav {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: var(--so-space-6) var(--so-space-4);
+    background: var(--so-bg-white);
+    border-right: 1px solid var(--so-border-weak);
+}
+.ds-nav h1 { font-size: var(--so-text-body); font-weight: var(--so-weight-bold); margin: 0 0 var(--so-space-4); }
+.ds-nav h2 { font-size: var(--so-text-xs); font-weight: var(--so-weight-semibold); color: var(--so-text-weak); text-transform: uppercase; letter-spacing: 0.05em; margin: var(--so-space-5) 0 var(--so-space-1-5); }
+.ds-nav a { display: block; padding: var(--so-space-1) var(--so-space-2); font-size: var(--so-text-sm); color: var(--so-text-default); text-decoration: none; border-radius: var(--so-radius-sm); }
+.ds-nav a:hover { background: var(--so-bg-lightest); }
+
+.ds-main { padding: var(--so-space-8) var(--so-space-10); max-width: 1200px; }
+.ds-section { margin-bottom: var(--so-space-12); scroll-margin-top: var(--so-space-6); }
+.ds-section h2 { font-size: var(--so-text-2xl); font-weight: var(--so-weight-semibold); margin: 0 0 var(--so-space-2); }
+.ds-section > p { color: var(--so-text-weak); margin: 0 0 var(--so-space-5); max-width: 70ch; }
+.ds-subsection { margin-bottom: var(--so-space-8); }
+.ds-subsection h3 { font-size: var(--so-text-lg); font-weight: var(--so-weight-semibold); margin: 0 0 var(--so-space-4); }
+
+/* Token swatch grids */
+.ds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--so-space-3); }
+.ds-swatch {
+    background: var(--so-bg-white);
+    border: 1px solid var(--so-border-weak);
+    border-radius: var(--so-radius-md);
+    overflow: hidden;
+    font-size: var(--so-text-xs);
+}
+.ds-swatch-color { height: 64px; }
+.ds-swatch-meta { padding: var(--so-space-2) var(--so-space-3); }
+.ds-swatch-name { font-family: var(--so-font-mono, 'SF Mono', Monaco, monospace); color: var(--so-text-default); font-size: var(--so-text-xs); word-break: break-all; }
+.ds-swatch-val { color: var(--so-text-weak); margin-top: 2px; }
+
+.ds-scale { display: flex; flex-direction: column; gap: var(--so-space-1-5); background: var(--so-bg-white); border: 1px solid var(--so-border-weak); border-radius: var(--so-radius-md); padding: var(--so-space-4); }
+.ds-scale-row { display: grid; grid-template-columns: 180px 80px 1fr; align-items: center; gap: var(--so-space-3); font-size: var(--so-text-sm); }
+.ds-scale-name { font-family: var(--so-font-mono, 'SF Mono', Monaco, monospace); font-size: var(--so-text-xs); color: var(--so-text-default); }
+.ds-scale-val { color: var(--so-text-weak); font-size: var(--so-text-xs); }
+.ds-scale-demo { color: var(--so-text-default); }
+
+/* Component example wrapper */
+.ds-example { background: var(--so-bg-white); border: 1px solid var(--so-border-weak); border-radius: var(--so-radius-md); padding: var(--so-space-5); margin-bottom: var(--so-space-3); display: flex; flex-wrap: wrap; align-items: center; gap: var(--so-space-3); }
+.ds-example--column { flex-direction: column; align-items: flex-start; }
+.ds-caption { font-size: var(--so-text-xs); color: var(--so-text-weak); margin: -var(--so-space-2) 0 var(--so-space-3); font-family: var(--so-font-mono, monospace); }
+
+/* For shadow demo */
+.ds-shadow-box { width: 160px; height: 80px; background: var(--so-bg-white); border-radius: var(--so-radius-md); display: flex; align-items: center; justify-content: center; font-size: var(--so-text-xs); color: var(--so-text-weak); }
+.ds-shadow-cell { display: flex; flex-direction: column; align-items: center; gap: var(--so-space-2); }
+
+.ds-radius-box { width: 80px; height: 80px; background: var(--so-brand-primary-lightest); border: 1px solid var(--so-brand-primary-light); }
+.ds-radius-cell { display: flex; flex-direction: column; align-items: center; gap: var(--so-space-2); }
+
+.ds-spacing-bar { background: var(--so-brand-primary); height: 20px; border-radius: var(--so-radius-xs); }
+.ds-icon-box { background: var(--so-brand-primary-lightest); color: var(--so-brand-primary); display: flex; align-items: center; justify-content: center; border-radius: var(--so-radius-sm); }
+
+/* Inline so-shell wrapper for components — gives them the canonical input
+   styling and tokens. Override only what's needed for documentation context. */
+.so-shell.ds-host {
+    height: auto;
+    margin-left: 0;
+    background: transparent;
+    overflow: visible;
+    display: block;
+}
+</style>
+</head>
+
+<body>
+<div class="ds-doc so-shell ds-host">
+
+<!-- ─────────────────── NAV ─────────────────── -->
+<aside class="ds-nav">
+    <h1>E2M Connect DS</h1>
+
+    <h2>Tokens</h2>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#radii">Radii</a>
+    <a href="#shadows">Shadows</a>
+    <a href="#icons">Icon sizes</a>
+    <a href="#motion">Motion</a>
+    <a href="#layers">Z-index</a>
+
+    <h2>Components</h2>
+    <a href="#buttons">Buttons</a>
+    <a href="#inputs">Inputs</a>
+    <a href="#dropdowns">Dropdowns</a>
+    <a href="#toggle">Toggle</a>
+    <a href="#badges">Badges</a>
+    <a href="#tags">Tags & filter pills</a>
+    <a href="#stat-cards">Stat cards</a>
+    <a href="#status-pills">Status pills</a>
+    <a href="#cards">Cards</a>
+    <a href="#memory-card">Memory card</a>
+    <a href="#code-block">Code block</a>
+    <a href="#modal">Modal</a>
+    <a href="#setup-status">Setup status cards</a>
+</aside>
+
+<!-- ─────────────────── MAIN ─────────────────── -->
+<main class="ds-main">
+
+    <header class="ds-section">
+        <h2 style="font-size: var(--so-text-3xl);">E2M Connect Design System</h2>
+        <p>
+            Every visual value in this plugin references a token from
+            <code style="font-family: var(--so-font-mono, monospace); font-size: 0.9em; background: var(--so-tag-bg); padding: 1px 6px; border-radius: 4px;">:root</code>
+            in <code style="font-family: var(--so-font-mono, monospace); font-size: 0.9em; background: var(--so-tag-bg); padding: 1px 6px; border-radius: 4px;">admin-design-system.css</code>.
+            This page renders the live tokens and every shipping component.
+            Color strategy is <strong>Restrained</strong> — tinted neutrals plus the brand
+            purple used as a ≤10% accent. Status signals use colored text on
+            neutral chips, never colored backgrounds. Depth is borders-only
+            (the one ambient shadow is <code>--so-shadow-xs</code> on cards).
+        </p>
+    </header>
+
+    <!-- ─────────────────── COLORS ─────────────────── -->
+    <section class="ds-section" id="colors">
+        <h2>Colors</h2>
+        <p>Every neutral is tinted toward the brand hue. Semantic states (success/warning/error) have a full 4-step ramp. The brand palette is purple; one accent, used ≤10%. Status colors (blue/green/amber) are reserved for the Setup Guide's environment-health UI — distinct from the brand-aligned <code>--so-info</code> alias.</p>
+
+        <div class="ds-subsection">
+            <h3>Brand</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-brand-primary-lightest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-brand-primary-lightest</div><div class="ds-swatch-val">#F2EEFF</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-brand-primary-light);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-brand-primary-light</div><div class="ds-swatch-val">#B8A9FF</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-brand-primary);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-brand-primary</div><div class="ds-swatch-val">#5202FD</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-brand-primary-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-brand-primary-dark</div><div class="ds-swatch-val">#3600AF</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-brand-gradient);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-brand-gradient</div><div class="ds-swatch-val">linear-gradient</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Backgrounds</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-white);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-white</div><div class="ds-swatch-val">#FFFFFF · cards, content</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-lightest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-lightest</div><div class="ds-swatch-val">#F9F9FB · shell</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-light);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-light</div><div class="ds-swatch-val">#F1F1F7 · sidebar</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-secondary);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-secondary</div><div class="ds-swatch-val">#E3E3ED · hover</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-hover-subtle);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-hover-subtle</div><div class="ds-swatch-val">#F5F5F5</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-darkest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-darkest</div><div class="ds-swatch-val">#0A0A0A</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-dark</div><div class="ds-swatch-val">#171717 · active item bg</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bg-darker);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bg-darker</div><div class="ds-swatch-val">#202020 · active menu</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Text</h3>
+            <div class="ds-scale">
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-default</span><span class="ds-scale-val">#0A0A0A</span><span class="ds-scale-demo" style="color: var(--so-text-default);">Aa — Primary text</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-strong</span><span class="ds-scale-val">#171717</span><span class="ds-scale-demo" style="color: var(--so-text-strong);">Aa — Strong text</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-weak</span><span class="ds-scale-val">#737373</span><span class="ds-scale-demo" style="color: var(--so-text-weak);">Aa — Secondary / description</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-weaker</span><span class="ds-scale-val">#A3A3A3</span><span class="ds-scale-demo" style="color: var(--so-text-weaker);">Aa — Tertiary / placeholder</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-disabled</span><span class="ds-scale-val">→ weak</span><span class="ds-scale-demo" style="color: var(--so-text-disabled);">Aa — Disabled</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-white</span><span class="ds-scale-val">#FFFFFF</span><span class="ds-scale-demo" style="color: var(--so-text-white); background: var(--so-bg-dark); padding: 2px 8px; border-radius: 4px;">Aa — On dark</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-inverse-weak</span><span class="ds-scale-val">rgba(255,255,255,.7)</span><span class="ds-scale-demo" style="color: var(--so-text-inverse-weak); background: var(--so-bg-dark); padding: 2px 8px; border-radius: 4px;">Aa — Secondary on dark</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-inverse-weakest</span><span class="ds-scale-val">rgba(255,255,255,.5)</span><span class="ds-scale-demo" style="color: var(--so-text-inverse-weakest); background: var(--so-bg-dark); padding: 2px 8px; border-radius: 4px;">Aa — Tertiary on dark</span></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Borders</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-weakest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-weakest</div><div class="ds-swatch-val">#F1F1F7</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-weak);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-weak</div><div class="ds-swatch-val">#E5E5E5 · default field border</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-default);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-default</div><div class="ds-swatch-val">#D4D4D4 · hover</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-strong);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-strong</div><div class="ds-swatch-val">#A3A3A3 · focus</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-dark</div><div class="ds-swatch-val">#737373</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-border-darker);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-border-darker</div><div class="ds-swatch-val">#404040</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Semantic — Success</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-success-lightest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-success-lightest</div><div class="ds-swatch-val">#E7FFE7</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-success-light);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-success-light</div><div class="ds-swatch-val">#A7EAAA</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-success);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-success</div><div class="ds-swatch-val">#2EA343</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-success-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-success-dark</div><div class="ds-swatch-val">#0A842A</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Semantic — Warning</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-warning-lightest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-warning-lightest</div><div class="ds-swatch-val">#FFE2BF</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-warning-light);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-warning-light</div><div class="ds-swatch-val">#FFC680</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-warning);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-warning</div><div class="ds-swatch-val">#FFA940</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-warning-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-warning-dark</div><div class="ds-swatch-val">#AA712B</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Semantic — Error / Destructive</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-lightest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-lightest</div><div class="ds-swatch-val">#FFF2EF</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-light);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-light</div><div class="ds-swatch-val">#FDC9C6</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-bg-strong);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-bg-strong</div><div class="ds-swatch-val">#FECACA</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error</div><div class="ds-swatch-val">#F65258</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-hover);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-hover</div><div class="ds-swatch-val">#E04248</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-dark);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-dark</div><div class="ds-swatch-val">#D12D37</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-active);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-active</div><div class="ds-swatch-val">#B91C2C</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-error-strongest);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-error-strongest</div><div class="ds-swatch-val">#991B1B</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Status sub-palette (Setup guide)</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-success);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-success</div><div class="ds-swatch-val">#16A34A</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-success-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-success-bg</div><div class="ds-swatch-val">#F0FDF4</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-warn);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-warn</div><div class="ds-swatch-val">#D97706</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-warn-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-warn-bg</div><div class="ds-swatch-val">#FFFBEB</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-info);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-info</div><div class="ds-swatch-val">#3B82F6</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-status-info-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-status-info-bg</div><div class="ds-swatch-val">#EFF6FF</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Tag (slate sub-palette)</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-tag-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-tag-bg</div><div class="ds-swatch-val">#F8FAFC · neutral chip bg</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-tag-border);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-tag-border</div><div class="ds-swatch-val">#CBD5E1</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-tag-fg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-tag-fg</div><div class="ds-swatch-val">#334155</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-tag-muted);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-tag-muted</div><div class="ds-swatch-val">#64748B</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Code block sub-palette</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-bg</div><div class="ds-swatch-val">#1E1E2E</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-bar-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-bar-bg</div><div class="ds-swatch-val">#16161F</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-tab-bg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-tab-bg</div><div class="ds-swatch-val">#2E2E42</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-fg);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-fg</div><div class="ds-swatch-val">#CDD6F4</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-success);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-success</div><div class="ds-swatch-val">#4ADE80</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-code-accent);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-code-accent</div><div class="ds-swatch-val">#6366F1</div></div></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Admin bar sub-palette (frontend toolbar)</h3>
+            <div class="ds-grid">
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bar-online);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bar-online</div><div class="ds-swatch-val">#00D084 · active dot</div></div></div>
+                <div class="ds-swatch"><div class="ds-swatch-color" style="background: var(--so-bar-offline);"></div><div class="ds-swatch-meta"><div class="ds-swatch-name">--so-bar-offline</div><div class="ds-swatch-val">#CC1818</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── TYPOGRAPHY ─────────────────── -->
+    <section class="ds-section" id="typography">
+        <h2>Typography</h2>
+        <p>System font stack (no web fonts). Hierarchy through size + weight contrast.</p>
+
+        <div class="ds-subsection">
+            <h3>Font sizes</h3>
+            <div class="ds-scale">
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-3xs</span><span class="ds-scale-val">10px</span><span class="ds-scale-demo" style="font-size: var(--so-text-3xs);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-xs</span><span class="ds-scale-val">11px</span><span class="ds-scale-demo" style="font-size: var(--so-text-xs);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-label</span><span class="ds-scale-val">12px</span><span class="ds-scale-demo" style="font-size: var(--so-text-label);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-sm</span><span class="ds-scale-val">13px</span><span class="ds-scale-demo" style="font-size: var(--so-text-sm);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-base</span><span class="ds-scale-val">14px · default</span><span class="ds-scale-demo" style="font-size: var(--so-text-base);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-md</span><span class="ds-scale-val">15px</span><span class="ds-scale-demo" style="font-size: var(--so-text-md);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-body</span><span class="ds-scale-val">16px</span><span class="ds-scale-demo" style="font-size: var(--so-text-body);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-lg</span><span class="ds-scale-val">18px</span><span class="ds-scale-demo" style="font-size: var(--so-text-lg);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-xl-tight</span><span class="ds-scale-val">20px</span><span class="ds-scale-demo" style="font-size: var(--so-text-xl-tight);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-xl</span><span class="ds-scale-val">22px</span><span class="ds-scale-demo" style="font-size: var(--so-text-xl);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-2xl</span><span class="ds-scale-val">24px</span><span class="ds-scale-demo" style="font-size: var(--so-text-2xl);">The quick brown fox</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-3xl</span><span class="ds-scale-val">28px</span><span class="ds-scale-demo" style="font-size: var(--so-text-3xl);">The quick brown fox</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-text-4xl</span><span class="ds-scale-val">32px</span><span class="ds-scale-demo" style="font-size: var(--so-text-4xl);">The quick brown</span></div>
+            </div>
+        </div>
+
+        <div class="ds-subsection">
+            <h3>Weights</h3>
+            <div class="ds-scale">
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-weight-normal</span><span class="ds-scale-val">400</span><span class="ds-scale-demo" style="font-weight: var(--so-weight-normal); font-size: var(--so-text-body);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-weight-medium</span><span class="ds-scale-val">500</span><span class="ds-scale-demo" style="font-weight: var(--so-weight-medium); font-size: var(--so-text-body);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-weight-semibold</span><span class="ds-scale-val">600</span><span class="ds-scale-demo" style="font-weight: var(--so-weight-semibold); font-size: var(--so-text-body);">The quick brown fox jumps</span></div>
+                <div class="ds-scale-row"><span class="ds-scale-name">--so-weight-bold</span><span class="ds-scale-val">700</span><span class="ds-scale-demo" style="font-weight: var(--so-weight-bold); font-size: var(--so-text-body);">The quick brown fox jumps</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── SPACING ─────────────────── -->
+    <section class="ds-section" id="spacing">
+        <h2>Spacing</h2>
+        <p>4px base scale. Use multiples — don't introduce ad-hoc values.</p>
+        <div class="ds-scale">
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-0-5</span><span class="ds-scale-val">2px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 2px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-1</span><span class="ds-scale-val">4px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 4px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-1-5</span><span class="ds-scale-val">6px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 6px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-2</span><span class="ds-scale-val">8px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 8px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-3</span><span class="ds-scale-val">12px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 12px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-4</span><span class="ds-scale-val">16px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 16px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-5</span><span class="ds-scale-val">20px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 20px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-6</span><span class="ds-scale-val">24px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 24px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-8</span><span class="ds-scale-val">32px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 32px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-10</span><span class="ds-scale-val">40px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 40px;"></div></span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-space-12</span><span class="ds-scale-val">48px</span><span class="ds-scale-demo"><div class="ds-spacing-bar" style="width: 48px;"></div></span></div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── RADII ─────────────────── -->
+    <section class="ds-section" id="radii">
+        <h2>Border radii</h2>
+        <div class="ds-example">
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-xs);"></div><span class="ds-swatch-name">xs</span><span class="ds-swatch-val">4px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-sm);"></div><span class="ds-swatch-name">sm</span><span class="ds-swatch-val">6px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-md);"></div><span class="ds-swatch-name">md · controls</span><span class="ds-swatch-val">8px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-mlg);"></div><span class="ds-swatch-name">mlg</span><span class="ds-swatch-val">10px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-lg);"></div><span class="ds-swatch-name">lg · cards</span><span class="ds-swatch-val">12px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-xl);"></div><span class="ds-swatch-name">xl · modals</span><span class="ds-swatch-val">16px</span></div>
+            <div class="ds-radius-cell"><div class="ds-radius-box" style="border-radius: var(--so-radius-full);"></div><span class="ds-swatch-name">full · pills</span><span class="ds-swatch-val">9999px</span></div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── SHADOWS ─────────────────── -->
+    <section class="ds-section" id="shadows">
+        <h2>Shadows</h2>
+        <p>Borders-only depth strategy. Ambient shadows are rare and intentional.</p>
+        <div class="ds-example" style="background: var(--so-bg-lightest);">
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-xs);">xs · cards</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-sm);">sm</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-sm-soft);">sm-soft</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-md);">md</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-lg);">lg</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-tooltip);">tooltip</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-popover);">popover</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-xl);">xl</div></div>
+            <div class="ds-shadow-cell"><div class="ds-shadow-box" style="box-shadow: var(--so-shadow-modal);">modal</div></div>
+        </div>
+
+        <h3 style="margin-top: var(--so-space-5);">Focus rings</h3>
+        <div class="ds-example">
+            <button style="height: 36px; padding: 0 12px; border-radius: var(--so-radius-md); background: var(--so-bg-white); border: 1px solid var(--so-border-strong); box-shadow: 0 0 0 var(--so-focus-ring-width) var(--so-focus-ring-neutral); color: var(--so-text-default); font-family: var(--so-font); font-size: var(--so-text-base);">Focus neutral (canonical)</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: var(--so-radius-md); background: var(--so-bg-white); border: 1px solid var(--so-error); box-shadow: 0 0 0 var(--so-focus-ring-width) var(--so-focus-ring-error); color: var(--so-text-default); font-family: var(--so-font); font-size: var(--so-text-base);">Focus error</button>
+        </div>
+    </section>
+
+    <!-- ─────────────────── ICONS ─────────────────── -->
+    <section class="ds-section" id="icons">
+        <h2>Icon sizes</h2>
+        <div class="ds-example">
+            <div class="ds-icon-box" style="width: var(--so-icon-xs); height: var(--so-icon-xs);">12</div>
+            <div class="ds-icon-box" style="width: var(--so-icon-sm); height: var(--so-icon-sm);">16</div>
+            <div class="ds-icon-box" style="width: var(--so-icon-md); height: var(--so-icon-md);">20</div>
+            <div class="ds-icon-box" style="width: var(--so-icon-lg); height: var(--so-icon-lg);">24</div>
+            <div class="ds-icon-box" style="width: var(--so-icon-xl); height: var(--so-icon-xl);">36</div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── MOTION ─────────────────── -->
+    <section class="ds-section" id="motion">
+        <h2>Motion</h2>
+        <div class="ds-scale">
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-transition-fast</span><span class="ds-scale-val">150ms ease</span><span class="ds-scale-demo">Hover / focus state changes</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-transition-base</span><span class="ds-scale-val">200ms ease</span><span class="ds-scale-demo">Modal fade, sidebar slide</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-transition-slow</span><span class="ds-scale-val">300ms ease</span><span class="ds-scale-demo">Progress meter fill</span></div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── Z-INDEX ─────────────────── -->
+    <section class="ds-section" id="layers">
+        <h2>Z-index hierarchy</h2>
+        <div class="ds-scale">
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-sidebar</span><span class="ds-scale-val">100</span><span class="ds-scale-demo">Sidebar layer</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-header</span><span class="ds-scale-val">110</span><span class="ds-scale-demo">Sticky header</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-dropdown</span><span class="ds-scale-val">200</span><span class="ds-scale-demo">Page-level dropdown menus</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">(WP admin bar)</span><span class="ds-scale-val">99999</span><span class="ds-scale-demo">Browser default — we sit above this</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-modal-backdrop</span><span class="ds-scale-val">100000</span><span class="ds-scale-demo">Modal overlay</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-modal</span><span class="ds-scale-val">100001</span><span class="ds-scale-demo">Modal card</span></div>
+            <div class="ds-scale-row"><span class="ds-scale-name">--so-z-modal-dropdown</span><span class="ds-scale-val">100100</span><span class="ds-scale-demo">Dropdowns inside modals</span></div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── BUTTONS ─────────────────── -->
+    <section class="ds-section" id="buttons">
+        <h2>Buttons</h2>
+        <div class="ds-example">
+            <button class="so-btn so-btn-primary">Primary</button>
+            <button class="so-btn so-btn-secondary">Secondary</button>
+            <button class="so-btn so-btn-outline">Outline</button>
+            <button class="so-btn so-btn-ghost">Ghost</button>
+            <button class="so-btn so-btn-ghost-muted">Ghost muted</button>
+            <button class="so-btn so-btn-destructive">Destructive</button>
+            <button class="so-btn so-btn-danger">Danger</button>
+            <button class="so-btn so-btn-danger-filled">Danger filled</button>
+        </div>
+        <div class="ds-example">
+            <button class="so-btn so-btn-primary so-btn-sm">Small</button>
+            <button class="so-btn so-btn-secondary so-btn-sm">Small</button>
+            <button class="so-btn so-btn-outline so-btn-sm">Small</button>
+            <button class="so-btn so-btn-primary" disabled>Disabled</button>
+        </div>
+    </section>
+
+    <!-- ─────────────────── INPUTS ─────────────────── -->
+    <section class="ds-section" id="inputs">
+        <h2>Form controls</h2>
+        <p>One canonical pattern: 36px height, <code>--so-radius-md</code>, <code>--so-border-weak</code> at rest → <code>--so-border-default</code> on hover → <code>--so-border-strong</code> + faint neutral ring on focus. Placeholder always <code>--so-text-weaker</code> in <code>--so-font</code>.</p>
+
+        <div class="ds-example ds-example--column">
+            <input type="text" placeholder="Text input — focus me" style="width: 320px;" />
+            <input type="search" placeholder="Search input" style="width: 320px;" />
+            <textarea placeholder="Textarea — multi-line input" style="width: 320px; min-height: 80px;"></textarea>
+            <select style="width: 320px;">
+                <option>Native select (rarely used — prefer .so-dropdown)</option>
+            </select>
+            <input type="text" placeholder="Disabled" disabled style="width: 320px;" />
+        </div>
+    </section>
+
+    <!-- ─────────────────── DROPDOWNS ─────────────────── -->
+    <section class="ds-section" id="dropdowns">
+        <h2>Custom dropdown</h2>
+        <p>The canonical dropdown component. Use this instead of native <code>&lt;select&gt;</code> so the menu and trigger styling stay identical across pages. Closed state matches form controls.</p>
+
+        <div class="ds-example">
+            <div class="so-dropdown">
+                <button type="button" class="so-dropdown-trigger">
+                    <span class="so-dropdown-label">All abilities</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+            <div class="so-dropdown open">
+                <button type="button" class="so-dropdown-trigger">
+                    <span class="so-dropdown-label">Open state</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="so-dropdown-menu" style="position: absolute;">
+                    <button type="button" class="so-dropdown-item active">Selected option</button>
+                    <button type="button" class="so-dropdown-item">Another option</button>
+                    <button type="button" class="so-dropdown-item">A third option</button>
+                </div>
+            </div>
+        </div>
+        <p style="font-size: var(--so-text-xs); color: var(--so-text-weak); font-family: var(--so-font-mono, monospace);">.so-dropdown--block — full-width variant for form fields.</p>
+    </section>
+
+    <!-- ─────────────────── TOGGLE ─────────────────── -->
+    <section class="ds-section" id="toggle">
+        <h2>Toggle switch</h2>
+        <div class="ds-example">
+            <label class="so-toggle">
+                <input type="checkbox" checked />
+                <span class="so-toggle-track"></span>
+            </label>
+            <label class="so-toggle">
+                <input type="checkbox" />
+                <span class="so-toggle-track"></span>
+            </label>
+            <label class="so-toggle so-toggle-sm">
+                <input type="checkbox" checked />
+                <span class="so-toggle-track"></span>
+            </label>
+            <label class="so-toggle so-toggle-sm">
+                <input type="checkbox" />
+                <span class="so-toggle-track"></span>
+            </label>
+        </div>
+    </section>
+
+    <!-- ─────────────────── BADGES ─────────────────── -->
+    <section class="ds-section" id="badges">
+        <h2>Badges</h2>
+        <p>Status pills used in the Request Details modal and similar. All badges share the same neutral chip background — only the text color signals state.</p>
+        <div class="ds-example">
+            <span class="so-badge so-badge-success">SUCCESS</span>
+            <span class="so-badge so-badge-error">ERROR</span>
+            <span class="so-badge so-badge-warning">WARNING</span>
+            <span class="so-badge so-badge-info">INFO</span>
+            <span class="so-badge so-badge-neutral">NEUTRAL</span>
+            <span class="so-badge so-badge-method">POST</span>
+            <span class="so-badge so-badge-method">GET</span>
+        </div>
+    </section>
+
+    <!-- ─────────────────── TAGS ─────────────────── -->
+    <section class="ds-section" id="tags">
+        <h2>Tags &amp; filter pills</h2>
+        <p>Used for risk categorization on AI abilities. Same muted treatment: neutral chip + colored text.</p>
+
+        <div class="ds-example">
+            <span class="e2m-ability-tag" style="color: var(--so-success-dark);">Read Only</span>
+            <span class="e2m-ability-tag" style="color: var(--so-brand-primary);">Create / Info</span>
+            <span class="e2m-ability-tag" style="color: var(--so-warning-dark);">Caution</span>
+            <span class="e2m-ability-tag" style="color: var(--so-error);">High Risk</span>
+            <span class="e2m-ability-tag" style="color: var(--so-brand-primary);">Idempotent</span>
+            <span class="e2m-ability-tag" style="color: #00B6C9;">Code Exec</span>
+        </div>
+
+        <h3 style="margin-top: var(--so-space-5);">Filter pills</h3>
+        <div class="ds-example">
+            <span class="so-filter-pill" style="color: var(--so-success-dark);">Read Only</span>
+            <span class="so-filter-pill" style="color: var(--so-brand-primary);">Create / Info</span>
+            <span class="so-filter-pill" style="color: var(--so-warning-dark);">Caution</span>
+            <span class="so-filter-pill" style="color: var(--so-error);">High Risk</span>
+            <span class="so-filter-pill dimmed" style="color: var(--so-brand-primary);">Dimmed (inactive filter)</span>
+        </div>
+    </section>
+
+    <!-- ─────────────────── STAT CARDS ─────────────────── -->
+    <section class="ds-section" id="stat-cards">
+        <h2>Stat cards</h2>
+        <p>Summary metrics. Both the older modifier pattern (<code>.error</code>, <code>.success</code>) and the custom-property override pattern (<code>--stat-value-color</code>) work — they compose.</p>
+        <div class="so-stats-row" style="display: flex; gap: var(--so-space-3);">
+            <div class="so-stat-card"><div class="so-stat-value">152</div><div class="so-stat-label">Total Calls</div></div>
+            <div class="so-stat-card"><div class="so-stat-value success">148</div><div class="so-stat-label">Active</div></div>
+            <div class="so-stat-card"><div class="so-stat-value error">4</div><div class="so-stat-label">Failed</div></div>
+            <div class="so-stat-card"><div class="so-stat-value" style="--stat-value-color: var(--so-brand-primary);">42</div><div class="so-stat-label">Brand-tinted</div></div>
+            <div class="so-stat-card"><div class="so-stat-value so-stat-value--sm">e2m-bridge-discover-tools</div><div class="so-stat-label">Most Used Ability</div></div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── STATUS PILLS ─────────────────── -->
+    <section class="ds-section" id="status-pills">
+        <h2>Status pills (Analytics log rows)</h2>
+        <div class="ds-example">
+            <span class="so-status-pill so-status-pill--success"><span class="so-status-pill-text">Success</span></span>
+            <span class="so-status-pill so-status-pill--error"><span class="so-status-pill-text">Error</span></span>
+        </div>
+    </section>
+
+    <!-- ─────────────────── CARDS ─────────────────── -->
+    <section class="ds-section" id="cards">
+        <h2>Cards</h2>
+        <div class="ds-example ds-example--column">
+            <div class="so-card" style="width: 100%; max-width: 480px;">
+                <h3 class="so-card-title">Card title</h3>
+                <p class="so-card-desc">Card description text — used for sub-titles and explanations inside cards.</p>
+                <button class="so-btn so-btn-primary so-btn-sm">Action</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── MEMORY CARD ─────────────────── -->
+    <section class="ds-section" id="memory-card">
+        <h2>Memory card</h2>
+        <p>White body + grey footer strip with bottom-rounded corners. The footer uses a small grey dot separator.</p>
+        <div class="e2m-memory-cards" style="grid-template-columns: 320px;">
+            <article class="e2m-memory-card">
+                <div class="e2m-memory-card__body">
+                    <header class="e2m-memory-card__head">
+                        <div class="e2m-memory-card__icon-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </div>
+                        <form class="e2m-memory-card__toggle-form">
+                            <button type="button" class="e2m-memory-card__toggle e2m-memory-card__toggle--on">
+                                <span class="e2m-memory-card__toggle-track"><span class="e2m-memory-card__toggle-thumb"></span></span>
+                            </button>
+                        </form>
+                        <details class="e2m-memory-card__menu">
+                            <summary class="e2m-memory-card__menu-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                            </summary>
+                        </details>
+                    </header>
+                    <h3 class="e2m-memory-card__title"><a href="#">External resources</a></h3>
+                    <p class="e2m-memory-card__desc">Pointers to your brand guide, content style guide, and any external systems.</p>
+                </div>
+                <footer class="e2m-memory-card__footer">
+                    <span class="e2m-memory-card__footer-author">admin</span>
+                    <span class="e2m-memory-card__footer-sep">·</span>
+                    <span class="e2m-memory-card__footer-time">14 h ago</span>
+                </footer>
+            </article>
+        </div>
+    </section>
+
+    <!-- ─────────────────── CODE BLOCK ─────────────────── -->
+    <section class="ds-section" id="code-block">
+        <h2>Code block</h2>
+        <div class="ds-example ds-example--column">
+            <div class="so-code-wrap" style="width: 100%; max-width: 600px;">
+                <div class="so-code-header">
+                    <span class="so-code-header-label">PHP</span>
+                    <button class="so-code-copy-btn">Copy</button>
+                </div>
+                <pre class="so-code-block" style="border-radius: 0;">add_action( 'wp_dashboard_setup', function () {
+    wp_add_dashboard_widget(
+        'hi_dashboard_widget',
+        'Hi (from sandbox)',
+        function () { echo '&lt;p&gt;hi&lt;/p&gt;'; }
+    );
+} );</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── MODAL ─────────────────── -->
+    <section class="ds-section" id="modal">
+        <h2>Modal</h2>
+        <p>Header with bottom border, body, footer with gray bg + bottom-rounded corners. <code>z-index: 100001</code> sits above the WP admin bar.</p>
+        <div style="position: relative; height: 360px; background: var(--so-overlay-modal-backdrop); border-radius: var(--so-radius-md);">
+            <div class="so-modal-backdrop open" style="position: absolute; inset: 0; background: transparent;">
+                <div class="so-modal" style="position: relative; margin: var(--so-space-5) auto;">
+                    <div class="so-modal-header">
+                        <span class="so-modal-title">Logging Settings</span>
+                        <button class="so-modal-close">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </button>
+                    </div>
+                    <div class="so-modal-body">
+                        <label class="so-modal-label">Modal body content</label>
+                        <input type="text" placeholder="An input inside the modal" />
+                    </div>
+                    <div class="so-modal-footer">
+                        <button class="so-btn so-btn-outline so-btn-sm">Cancel</button>
+                        <button class="so-btn so-btn-primary so-btn-sm">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────── SETUP STATUS ─────────────────── -->
+    <section class="ds-section" id="setup-status">
+        <h2>Setup status cards</h2>
+        <p>The blue/green/amber palette used in the Setup Guide. Distinct from semantic success/warning to keep the brand-aligned states separate from environment-health UI.</p>
+        <div class="ssg-status-row" style="max-width: 760px;">
+            <div class="ssg-status-card ssg-ok">
+                <div class="ssg-status-icon">✓</div>
+                <div>
+                    <div class="ssg-status-label">PHP Version</div>
+                    <div class="ssg-status-value">8.2 — OK</div>
+                </div>
+            </div>
+            <div class="ssg-status-card ssg-warn">
+                <div class="ssg-status-icon">!</div>
+                <div>
+                    <div class="ssg-status-label">Memory Limit</div>
+                    <div class="ssg-status-value">128 MB — Tight</div>
+                </div>
+            </div>
+            <div class="ssg-status-card ssg-info">
+                <div class="ssg-status-icon">i</div>
+                <div>
+                    <div class="ssg-status-label">WordPress</div>
+                    <div class="ssg-status-value">6.6 — Detected</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="margin-top: var(--so-space-12); padding: var(--so-space-5) 0; border-top: 1px solid var(--so-border-weak); font-size: var(--so-text-xs); color: var(--so-text-weak);">
+        E2M Connect MCP — Design System. Tokens live in <code>e2m-ui/admin-design-system.css</code>. Component docs auto-update when the CSS does (this file <code>&lt;link&gt;</code>s it directly).
+    </footer>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+/**
+ * E2M Connect admin theme — "Onyx Orange".
+ * True-black surfaces, orange accent (#FF6A1A), Space Grotesk display type, and a
+ * TOP horizontal nav (the engine's left sidebar is reflowed into a top tab bar).
+ * Loaded after engine/e2m-ui/admin-design-system.css so it wins the cascade.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. Tokens — black + lime
+   ============================================================ */
+:root {
+  --so-brand-primary:          #FF6A1A;
+  --so-brand-primary-dark:     #E2540B;
+  --so-brand-primary-light:    #FF8A3D;
+  --so-brand-primary-lightest: rgba(255, 106, 26, .14);
+  --so-brand-secondary:          var(--so-brand-primary);
+  --so-brand-secondary-dark:     var(--so-brand-primary-dark);
+  --so-brand-secondary-light:    var(--so-brand-primary-light);
+  --so-brand-secondary-lightest: var(--so-brand-primary-lightest);
+  --so-brand-accent:   var(--so-brand-primary);
+  --so-brand-gradient: linear-gradient(135deg, #FF8A3D 0%, #E2540B 100%);
+  --so-info:        var(--so-brand-primary);
+  --so-info-bg:     rgba(255, 106, 26, .10);
+  --so-info-border: rgba(255, 106, 26, .30);
+
+  /* Surfaces — true black */
+  --so-bg-white:        #141414;
+  --so-bg-lightest:     #0E0E0E;
+  --so-bg-light:        #121212;
+  --so-bg-secondary:    #1C1C1C;
+  --so-bg-hover-subtle: rgba(255, 255, 255, .05);
+
+  --so-shell-bg:               #000000;
+  --so-header-bg:              #000000;
+  --so-sidebar-bg:             #000000;
+  --so-sidebar-border:         #1F1F1F;
+  --so-sidebar-item-color:     rgba(255, 255, 255, .62);
+  --so-sidebar-item-hover-bg:  rgba(255, 255, 255, .05);
+  --so-sidebar-item-active-bg: transparent;
+  --so-sidebar-label-color:    rgba(255, 255, 255, .38);
+  --so-content-bg:             #0B0B0B;
+  --so-surface-bg:             #0B0B0B;
+  --so-card-bg:                #121212;
+  --so-card-border:            #242424;
+
+  --so-text-default: #EDEDED;
+  --so-text-strong:  #FFFFFF;
+  --so-text-weak:    rgba(255, 255, 255, .60);
+  --so-text-weaker:  rgba(255, 255, 255, .40);
+
+  --so-border-weakest: #181818;
+  --so-border-weak:    #242424;
+  --so-border-default: #2E2E2E;
+  --so-border-strong:  #404040;
+
+  /* Semantic tints → dark (no light patches anywhere) */
+  --so-success-lightest: rgba(34, 197, 94, .14);
+  --so-success-light:    rgba(34, 197, 94, .45);
+  --so-success-bg:       rgba(34, 197, 94, .14);
+  --so-success-border:   rgba(34, 197, 94, .45);
+  --so-warning-lightest: rgba(234, 179, 8, .14);
+  --so-warning-light:    rgba(234, 179, 8, .45);
+  --so-warning-bg:       rgba(234, 179, 8, .14);
+  --so-warning-border:   rgba(234, 179, 8, .45);
+  --so-error-lightest:   rgba(248, 113, 113, .14);
+  --so-error-light:      rgba(248, 113, 113, .45);
+  --so-error-bg:         rgba(248, 113, 113, .14);
+  --so-error-border:     rgba(248, 113, 113, .45);
+  --so-error-bg-strong:  rgba(248, 113, 113, .22);
+  --so-status-success-bg: rgba(34, 197, 94, .14);
+  --so-status-warn-bg:    rgba(234, 179, 8, .14);
+  --so-status-warn-bg-soft: rgba(234, 179, 8, .10);
+  --so-status-info-bg:    rgba(255, 106, 26, .10);
+  --so-status-info-bg-soft: rgba(255, 106, 26, .07);
+  --so-status-error-bg:   rgba(248, 113, 113, .14);
+  --so-status-error-border: rgba(248, 113, 113, .45);
+  --so-warning-notice-bg: rgba(234, 179, 8, .12);
+  --so-warning-notice-border: rgba(234, 179, 8, .4);
+  --so-warning-notice-fg: #EAB308;
+  --so-tag-bg:    rgba(255, 255, 255, .06);
+  --so-tag-fg:    #EDEDED;
+  --so-tag-border:#2E2E2E;
+  --so-tag-muted: rgba(255, 255, 255, .5);
+}
+
+/* Kill the light gutter WP draws behind the shell on the hub pages */
+body.toplevel_page_e2mconnect #wpcontent,
+body.toplevel_page_e2m-mcp #wpcontent,
+body.toplevel_page_e2mconnect #wpbody-content,
+body.toplevel_page_e2m-mcp #wpbody-content { background: #000; }
+
+/* ============================================================
+   2. Typography — Space Grotesk display, Inter body
+   ============================================================ */
+.so-shell, .so-shell input, .so-shell select, .so-shell textarea, .so-shell button {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.so-page-title, .so-card-title, .so-settings-card-title, .so-stat-value, .so-nav-item,
+.so-btn, .so-modal-title, .so-header-version, .e2m-dash-welcome, .e2m-dash-tile h3,
+.so-page-header h1, .so-page-header h2 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -.01em;
+}
+
+/* ============================================================
+   3. Header — brand bar (row 1)
+   ============================================================ */
+.so-header {
+  display: flex; align-items: center;
+  border-bottom: 1px solid #1A1A1A; background: #000;
+}
+.so-header-logo {
+  display: flex; align-items: center; height: 32px; min-width: 0;
+  padding-left: 34px; /* room for the mark painted as a background */
+  background: url(../img/e2m-mark.png) left center no-repeat;
+  background-size: auto 26px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 700; font-size: 17px; letter-spacing: .2px; color: #fff;
+}
+.so-header-logo::after { content: "E2M"; }
+.so-header-logo::before { content: "Connect"; order: 1; margin-left: .35em; color: var(--so-brand-primary); }
+.so-header-logo img { display: none !important; }
+.so-hamburger { display: none !important; } /* nav is an always-visible top bar now */
+.so-header-version {
+  margin-left: 10px; font-size: 11px; color: var(--so-text-weaker);
+  border: 1px solid var(--so-border-weak); border-radius: 4px; padding: 2px 8px;
+}
+.so-header-status {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--so-text-weak);
+}
+.so-header-status .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--so-brand-primary); box-shadow: 0 0 0 3px rgba(255, 106, 26, .18);
+}
+
+/* ============================================================
+   4. TOP NAV — reflow the left sidebar into a horizontal tab bar (row 2)
+   ============================================================ */
+.so-body { flex-direction: column; }
+.so-sidebar { width: 100%; max-width: none; padding: 0; flex-shrink: 0; }
+.so-sidebar-inner {
+  background: #000; border: none; border-bottom: 1px solid var(--so-sidebar-border);
+  border-radius: 0; padding: 0 14px; box-shadow: none;
+  display: flex; align-items: center; overflow-x: auto;
+}
+.so-sidebar-label, .so-sidebar-group { display: none; }      /* vertical-only chrome */
+.so-sidebar-overlay { display: none !important; }
+.so-sidebar-nav { flex-direction: row; flex-wrap: nowrap; gap: 2px; }
+.so-nav-item {
+  position: relative; padding: 14px 16px; border-radius: 0; white-space: nowrap;
+  border-bottom: 2px solid transparent; color: var(--so-sidebar-item-color);
+}
+.so-nav-item::before { display: none !important; }           /* remove left active-bar */
+.so-nav-item:hover { background: rgba(255, 255, 255, .04); color: #fff; }
+.so-nav-item.active {
+  background: transparent; color: #fff; border-bottom-color: var(--so-brand-primary);
+}
+.so-nav-item.active .so-nav-icon { color: var(--so-brand-primary); }
+.so-nav-badge { background: var(--so-brand-primary); color: #fff; font-weight: 700; }
+
+/* ============================================================
+   5. Content / cards / page header — flat & crisp
+   ============================================================ */
+.so-content { color: var(--so-text-default); }
+.so-card, .so-settings-card, .so-stat-card, .so-analytics-card, .so-webhook-panel {
+  background: var(--so-card-bg); border: 1px solid var(--so-card-border);
+  border-radius: 6px; box-shadow: none;
+}
+.so-page-title { color: #fff; font-weight: 700; }
+.so-page-desc { color: var(--so-text-weak); }
+.so-stat-value { color: #fff; }
+
+/* ============================================================
+   6. Buttons — lime primary with DARK text (lime is bright)
+   ============================================================ */
+.so-btn { border-radius: 6px; }
+.so-btn-primary {
+  background: var(--so-brand-gradient); border: none; color: #fff; font-weight: 600;
+  box-shadow: none;
+}
+.so-btn-primary:hover { filter: brightness(1.05); }
+.so-btn-secondary, .so-btn-outline {
+  background: #1A1A1A; color: var(--so-text-default); border: 1px solid var(--so-border-default);
+}
+.so-btn-secondary:hover, .so-btn-outline:hover { background: #222; border-color: var(--so-border-strong); }
+.so-mode-btn.active-mcp { background: var(--so-brand-primary); color: #fff; }
+
+/* ============================================================
+   7. Tables / inputs / toggles — lime focus, dark text on accent
+   ============================================================ */
+.so-table th, .so-analytics-th { color: var(--so-text-weak); border-color: var(--so-border-weak); }
+.so-table td, .so-analytics-td { border-color: var(--so-border-weakest); color: var(--so-text-default); }
+.so-table-zebra tbody tr:nth-child(even), .so-table tbody tr:nth-child(even) { background: rgba(255, 255, 255, .025); }
+.so-table tbody tr:hover { background: rgba(255, 106, 26, .06); }
+
+.so-input, .so-input-sm, .so-dropdown, .so-search-input, .so-webhook-input, textarea, select {
+  background: #0E0E0E; color: var(--so-text-default); border-color: var(--so-border-default); border-radius: 6px;
+}
+.so-input::placeholder, textarea::placeholder { color: var(--so-text-weaker); }
+.so-input:focus, .so-dropdown:focus, .so-search-input:focus, textarea:focus, select:focus {
+  border-color: var(--so-brand-primary); box-shadow: 0 0 0 3px var(--so-brand-primary-lightest); outline: none;
+}
+.so-toggle input:checked + .so-toggle-track { background: var(--so-brand-primary); }
+.so-status-pill--success { color: #86EFAC; }
+.so-status-pill--error { color: #FCA5A5; }
+
+/* ============================================================
+   8. Modals + tooltip + scrollbars
+   ============================================================ */
+.so-modal { background: var(--so-card-bg); border: 1px solid var(--so-border-default); border-radius: 8px; }
+.so-modal-backdrop { background: rgba(0, 0, 0, .7); }
+.e2m-ac-tip { background: #141414 !important; color: #EDEDED !important; }
+.e2m-ac-tip::after, .e2m-ac-tip::before { border-top-color: #141414 !important; }
+.so-shell ::-webkit-scrollbar { width: 10px; height: 10px; }
+.so-shell ::-webkit-scrollbar-thumb { background: #242424; border-radius: 6px; }
+.so-shell ::-webkit-scrollbar-thumb:hover { background: #333; }
+.so-shell ::-webkit-scrollbar-track { background: transparent; }
+
+/* ============================================================
+   9. Dashboard landing
+   ============================================================ */
+.e2m-dash-hero {
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-start;
+  padding: 26px 26px; margin-bottom: 22px; border-radius: 8px;
+  background:
+    radial-gradient(900px 220px at 100% 0%, rgba(255, 106, 26, .10), transparent 60%),
+    #0C0C0C;
+  border: 1px solid var(--so-card-border);
+}
+.e2m-dash-welcome { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.e2m-dash-sub { color: var(--so-text-weak); margin-top: 8px; max-width: 62ch; }
+.e2m-dash-sub code, .e2m-dash-endpoint code {
+  background: rgba(255, 106, 26, .12); color: #FF6A1A; padding: 1px 7px; border-radius: 4px;
+  font-size: 12px; border: 1px solid rgba(255, 106, 26, .25);
+}
+.e2m-dash-statuscard { background: #0E0E0E; border: 1px solid var(--so-card-border); border-radius: 6px; padding: 12px 14px; min-width: 250px; }
+.e2m-dash-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: #FF6A1A; text-transform: uppercase; letter-spacing: .04em; }
+.e2m-dash-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #FF6A1A; box-shadow: 0 0 0 3px rgba(255, 106, 26, .18); }
+.e2m-dash-endpoint { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.e2m-dash-endpoint span { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--so-text-weaker); }
+.e2m-dash-endpoint code { word-break: break-all; }
+
+.e2m-dash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.e2m-dash-tile {
+  position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px;
+  border-radius: 6px; text-decoration: none; background: var(--so-card-bg);
+  border: 1px solid var(--so-card-border); color: var(--so-text-default);
+  transition: border-color .12s ease, background .12s ease, transform .12s ease;
+}
+.e2m-dash-tile:hover { transform: translateY(-2px); border-color: var(--so-brand-primary); background: #161616; }
+.e2m-dash-tile .ico {
+  width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; background: rgba(255, 106, 26, .12); border: 1px solid rgba(255, 106, 26, .25);
+}
+.e2m-dash-tile h3 { margin: 4px 0 0; font-size: 15px; font-weight: 600; color: #fff; }
+.e2m-dash-tile p { margin: 0; font-size: 13px; color: var(--so-text-weak); line-height: 1.5; }
+.e2m-dash-tile .go { position: absolute; top: 16px; right: 16px; color: var(--so-text-weaker); font-size: 16px; transition: transform .12s ease, color .12s ease; }
+.e2m-dash-tile:hover .go { color: var(--so-brand-primary); transform: translateX(3px); }
+.e2m-dash-foot { margin-top: 22px; color: var(--so-text-weaker); font-size: 12px; }

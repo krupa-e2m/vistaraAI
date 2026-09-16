@@ -1,0 +1,20 @@
+/*
+Theme Name: Vistara
+Theme URI: https://joinvistara.com/
+Author: E2M Solutions
+Author URI: https://e2msolutions.com/
+Description: Vistara — The AI Conference by E2M. Single-page conference site theme built on one ACF flexible-content field (`page_sections`) shared by page-flexible.php.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Tested up to: 6.6
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: vistara
+Requires Plugins: advanced-custom-fields-pro
+
+This file intentionally carries ONLY the theme header WordPress requires to recognize the
+theme. The real, compiled design CSS is enqueued separately (assets/css/styles.css, compiled
+from assets/scss/main.scss via Dart Sass) with assets/css/wp-compat.css loaded after it — see
+inc/import-enqueues.php.
+*/

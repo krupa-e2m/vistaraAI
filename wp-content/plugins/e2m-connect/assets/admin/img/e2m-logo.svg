@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="E2M Connect">
+  <defs>
+    <linearGradient id="e2mOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF8A3D"/>
+      <stop offset="1" stop-color="#E2540B"/>
+    </linearGradient>
+  </defs>
+  <!-- mark -->
+  <rect x="0" y="4" width="24" height="24" rx="6" fill="url(#e2mOrange)"/>
+  <path d="M7 11 h10 M7 16 h7 M7 21 h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <!-- wordmark -->
+  <text x="33" y="22" font-family="'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="0.3" fill="#FFFFFF">E2M<tspan fill="#FF6A1A"> Connect</tspan></text>
+</svg>

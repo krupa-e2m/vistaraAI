@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+Thumbs.db
+node_modules/
+vendor/
+
+
+Sessions-Summary-e2m-connect-wp.md
+manual screenshots/
+
+# Internal planning / spec docs — not shipped with the plugin (READMEs are tracked).
+E2M-DISCOVERY-GATE-SPEC.md
+E2M-IMPROVEMENT-PLACEMENT.md
+E2M-PRODUCT-IMPROVEMENT-PLAN.md
+E2M-PRODUCT-IMPROVEMENT-PLAN (2).md
+E2M-TEST-SCENARIOS.md
+E2M-Connect-Developer-Guide.docx
