@@ -1,0 +1,1 @@
+{"captured_at":"2026-08-17T08:26:46+00:00","row_count":0,"tables":[{"table":"options","where":"option_name IN (%s)","args":["footer-legal"],"rows":[]}]}

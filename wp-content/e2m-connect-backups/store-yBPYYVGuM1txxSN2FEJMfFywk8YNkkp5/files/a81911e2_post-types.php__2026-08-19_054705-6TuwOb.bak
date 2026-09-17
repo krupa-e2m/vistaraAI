@@ -1,0 +1,22 @@
+<?php
+/**
+ * Vistara — custom post type registrations.
+ *
+ * project-config.json `project.custom_post_types` is empty and spec/acf-plan.json
+ * `custom_post_types` is `[]` — every repeatable list on this single-page site (speakers,
+ * schedule nodes, gallery photos, testimonial thumbs, audience tiles, do_items) was
+ * evaluated against the CPT test in html-acf-standards and kept as an ACF repeater scoped to
+ * its layout (see `custom_post_types_considered_not_used` in the plan for the reasoning per
+ * candidate). This file is intentionally a scaffold placeholder — required by the theme-
+ * assembly contract's `inc/post-types.php` file, and here so `html-deployer` has a single,
+ * stable require target the day a future page/CPT is added, without needing to touch
+ * functions.php again.
+ *
+ * @package Vistara
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+// No custom post types are registered for this build. Add register_post_type() calls here,
+// hooked to `init`, if a future page introduces a genuinely repeatable independent entity
+// (own archive/permalink, independent query, reused across contexts — see the CPT test).

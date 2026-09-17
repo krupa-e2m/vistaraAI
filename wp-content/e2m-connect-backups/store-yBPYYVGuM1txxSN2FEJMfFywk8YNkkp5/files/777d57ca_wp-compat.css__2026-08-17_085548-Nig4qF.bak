@@ -1,0 +1,132 @@
+/**
+ * Vistara — wp-compat.css
+ *
+ * Enqueued AFTER styles.css. Closes the gap between markup WordPress emits and the
+ * transplanted source markup shape. No source counterpart for any of this — every rule here
+ * exists only because WP/ACF/the theme's own Walker output something the design CSS in
+ * styles.css was never written against.
+ */
+
+/* -------------------------------------------------------------------------
+ * Menus (footer-nav / footer-legal via wp_nav_menu + Menu_Walker_Flat)
+ * The source footer nav is a flat list of <a> tags directly inside <nav class="foot-nav">
+ * and <div class="foot-bot"> — no <ul>/<li> wrapper. The theme's Walker
+ * (inc/menu-walkers.php) already outputs that exact flat shape, so no li/current-menu-item
+ * class remapping is needed. This block is the belt-and-braces fallback if a menu location
+ * is ever rendered with the default Walker (e.g. before a menu is assigned, WP prints an
+ * empty <ul class="menu">) so it never breaks the flex layout.
+ * ---------------------------------------------------------------------- */
+.foot-nav ul.menu,
+.foot-bot ul.menu {
+  display: contents;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.foot-nav ul.menu li,
+.foot-bot ul.menu li {
+  display: contents;
+}
+.foot-nav .current-menu-item > a,
+.foot-nav .current_page_item > a {
+  color: var(--tx, #ede8ff);
+}
+
+/* -------------------------------------------------------------------------
+ * WordPress core image classes (wp_get_attachment_image / editor-inserted images)
+ * The source never had `.wp-image-*` / `.attachment-*` / `.size-*` or the editor's
+ * `max-width:100%;height:auto` box-sizing default. Every <img> in the transplanted
+ * partials is emitted as a bare tag with no such class, but neutralize it globally in case
+ * of a future editor-inserted image (e.g. inside the calendar_form.consent_text or
+ * behind_vistara.body_1 wysiwyg fields, which DO run through wp_kses_post/the editor and
+ * can legitimately carry these classes).
+ * ---------------------------------------------------------------------- */
+.wp-block-image img,
+img.wp-image,
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+  max-width: 100%;
+  height: auto;
+  display: inline;
+}
+
+/* Inline wysiwyg images (behind_vistara.body_1 e2m-chip, calendar_form.consent_text) must
+   never inherit the block-editor's figure/caption spacing — they render inline mid-sentence
+   in the source design. */
+.lede img,
+.consent img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: none;
+  height: 1.6em;
+  width: auto;
+  margin: 0 .25em;
+  border-radius: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Admin bar offset
+ * The design relies on `position:sticky`/fixed-feeling full-bleed sections (.hero, .nav) and
+ * scroll-based JS math (#progress width, .do-left sticky offset) that assumes the header sits
+ * at viewport top. The logged-in admin bar pushes <html> down 32px (46px <=782px) and would
+ * desync those calculations.
+ * ---------------------------------------------------------------------- */
+html.wp-toolbar {
+  margin-top: 0 !important;
+}
+body.admin-bar .nav {
+  top: 32px;
+}
+@media screen and (max-width: 782px) {
+  body.admin-bar .nav {
+    top: 46px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * CF7 / forms plugin shim (project-config form_engine: "none" today — pre-registered so the
+ * calendar_form.form_embed shortcode branch degrades gracefully the day a plugin is chosen,
+ * without a theme redeploy).
+ * ---------------------------------------------------------------------- */
+.cal .wpcf7,
+.cal .wpcf7-form {
+  width: 100%;
+}
+.cal .wpcf7-form .cal-form,
+.cal .wpcf7-form-control-wrap {
+  display: contents;
+}
+.cal .wpcf7-form input[type="submit"],
+.cal .wpcf7-form button.btn {
+  font: inherit;
+  cursor: pointer;
+}
+.cal .wpcf7-response-output {
+  margin: .75rem auto 0;
+  max-width: 30rem;
+  border-radius: var(--r-md, 12px);
+  border: 1px solid var(--line-2, rgba(237, 232, 255, .18));
+  padding: .6rem 1rem;
+  font-size: .85rem;
+}
+.cal .wpcf7-not-valid-tip {
+  color: #F5484D;
+  font-size: .75rem;
+  margin-top: .25rem;
+}
+
+/* -------------------------------------------------------------------------
+ * Editor-mode textarea/wysiwyg wrapping
+ * Textareas (new_lines: "") are rendered through nl2br(esc_html()); a wp_kses_post wysiwyg
+ * value stored as a single <p> is unwrapped into the source's own <p> (vst_wysiwyg_inline_html)
+ * so no wrapper is expected here — this rule only guards the documented multi-paragraph
+ * degradation path (an editor who adds a 2nd paragraph to body_1/consent_text).
+ * ---------------------------------------------------------------------- */
+.lede p,
+.consent p {
+  margin: 0;
+}
+.lede p + p,
+.consent p + p {
+  margin-top: .6em;
+}

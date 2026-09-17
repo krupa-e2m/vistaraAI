@@ -1,0 +1,415 @@
+[
+    {
+        "id": "1786955192-nHPSwWCo",
+        "type": "db",
+        "reason": "pre:e2m\/acf-read-write-values",
+        "target": "posts(1), postmeta(1)",
+        "backup_path": "db\/scope_2026-08-17_082632-4rXhom6o.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:26:32+00:00",
+        "created_ts": 1786955192,
+        "created_mt": 1786955192.7059529,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 2,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_082632-4rXhom6o.json"
+        }
+    },
+    {
+        "id": "1786955206-eiTCzYwA",
+        "type": "db",
+        "reason": "pre:e2m\/create-menu",
+        "target": "options(0)",
+        "backup_path": "db\/scope_2026-08-17_082646-EDwawDXW.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:26:46+00:00",
+        "created_ts": 1786955206,
+        "created_mt": 1786955206.570085,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 0,
+            "tables": [
+                "options"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_082646-EDwawDXW.json"
+        }
+    },
+    {
+        "id": "1786955206-a76qpDcS",
+        "type": "db",
+        "reason": "pre:e2m\/create-menu",
+        "target": "options(0)",
+        "backup_path": "db\/scope_2026-08-17_082646-TqGSbWO6.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:26:46+00:00",
+        "created_ts": 1786955206,
+        "created_mt": 1786955206.803535,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 0,
+            "tables": [
+                "options"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_082646-TqGSbWO6.json"
+        }
+    },
+    {
+        "id": "1786955273-dnA3KerR",
+        "type": "db",
+        "reason": "pre:e2m\/acf-read-write-values",
+        "target": "posts(1), postmeta(450)",
+        "backup_path": "db\/scope_2026-08-17_082753-Toz72J1P.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:27:53+00:00",
+        "created_ts": 1786955273,
+        "created_mt": 1786955273.376327,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 451,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_082753-Toz72J1P.json"
+        }
+    },
+    {
+        "id": "1786955323-0vWMhIAq",
+        "type": "db",
+        "reason": "pre:e2m\/acf-read-write-values",
+        "target": "posts(1), postmeta(898)",
+        "backup_path": "db\/scope_2026-08-17_082843-bo6PCqgY.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:28:43+00:00",
+        "created_ts": 1786955323,
+        "created_mt": 1786955323.5847681,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 899,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_082843-bo6PCqgY.json"
+        }
+    },
+    {
+        "id": "1786955457-G2cwRS0A",
+        "type": "db",
+        "reason": "pre:e2m\/update-page",
+        "target": "posts(1), postmeta(898)",
+        "backup_path": "db\/scope_2026-08-17_083057-zp4CuUnk.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:30:57+00:00",
+        "created_ts": 1786955457,
+        "created_mt": 1786955457.7053089,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 899,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_083057-zp4CuUnk.json"
+        }
+    },
+    {
+        "id": "1786955811-FCi6HZFZ",
+        "type": "db",
+        "reason": "pre:e2m\/acf-read-write-values",
+        "target": "posts(1), postmeta(898)",
+        "backup_path": "db\/scope_2026-08-17_083651-MrHIDaMK.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:36:51+00:00",
+        "created_ts": 1786955811,
+        "created_mt": 1786955811.9404099,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 899,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_083651-MrHIDaMK.json"
+        }
+    },
+    {
+        "id": "1786955823-URhl3TYt",
+        "type": "db",
+        "reason": "pre:e2m\/acf-read-write-values",
+        "target": "posts(1), postmeta(898)",
+        "backup_path": "db\/scope_2026-08-17_083703-lqRD9epA.json",
+        "task_id": "",
+        "created_at": "2026-08-17T08:37:03+00:00",
+        "created_ts": 1786955823,
+        "created_mt": 1786955823.9037111,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "row_count": 899,
+            "tables": [
+                "posts",
+                "postmeta"
+            ],
+            "rel_path": "wp-content\/e2m-connect-backups\/store-yBPYYVGuM1txxSN2FEJMfFywk8YNkkp5\/db\/scope_2026-08-17_083703-lqRD9epA.json"
+        }
+    },
+    {
+        "id": "1786956948-b4CgDA3D",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/template-parts\/sections\/lockup_band.php",
+        "backup_path": "files\/35eb6bf4_lockup_band.php__2026-08-17_085548-hmoy89.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.3616819,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/template-parts\/sections\/lockup_band.php",
+            "size": 3180,
+            "sha256": "525aced1de8bb990d92029ace946469f0c385caafeddbd8ce39bacf9d701e0ac"
+        }
+    },
+    {
+        "id": "1786956948-9UwCBMqr",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/template-parts\/sections\/media_intro.php",
+        "backup_path": "files\/bc164e14_media_intro.php__2026-08-17_085548-UatySE.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.393307,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/template-parts\/sections\/media_intro.php",
+            "size": 3881,
+            "sha256": "bdd80e1d553bc762177f74f15729bbf6c37f0c35d23762a02933fb3c717d9496"
+        }
+    },
+    {
+        "id": "1786956948-psz2EHJR",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/footer.php",
+        "backup_path": "files\/f54e1993_footer.php__2026-08-17_085548-6lIoAH.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.4209819,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/footer.php",
+            "size": 4189,
+            "sha256": "52a166f7e7b0532ecb62ebfd9b6aadf06d0565c6ad348a7ec8ca46ffb42814c2"
+        }
+    },
+    {
+        "id": "1786956948-S9vLv5Rx",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.css",
+        "backup_path": "files\/f76b4362_styles.css__2026-08-17_085548-W803Dw.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.4484711,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.css",
+            "size": 42334,
+            "sha256": "356f9613da3650845d767c50b232083255f468cdbddd47bc02bc84d4de9bdd5c"
+        }
+    },
+    {
+        "id": "1786956948-SysuNd2i",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+        "backup_path": "files\/a7df86d0_styles.min_.css__2026-08-17_085548-6Ld6YD.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.4770911,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+            "size": 33383,
+            "sha256": "9f34819dc10141fe841e80a979b0077429fe85ac1429639dd1680232849c0942"
+        }
+    },
+    {
+        "id": "1786956948-QIxC2TwN",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/wp-compat.css",
+        "backup_path": "files\/777d57ca_wp-compat.css__2026-08-17_085548-Nig4qF.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T08:55:48+00:00",
+        "created_ts": 1786956948,
+        "created_mt": 1786956948.5042009,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/wp-compat.css",
+            "size": 4821,
+            "sha256": "97619facc5384c68e1b446b7e9a75d35bfd83bff2dfcff3d63cf2020e406ef01"
+        }
+    },
+    {
+        "id": "1786958111-D9vHoydP",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.css",
+        "backup_path": "files\/f76b4362_styles.css__2026-08-17_091511-MNepd8.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T09:15:11+00:00",
+        "created_ts": 1786958111,
+        "created_mt": 1786958111.783247,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.css",
+            "size": 42414,
+            "sha256": "34a84d64a484e758be38fd5103de67085d5c8ac09980ec4f5126305124142fd2"
+        }
+    },
+    {
+        "id": "1786958111-pbddg1v2",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+        "backup_path": "files\/a7df86d0_styles.min_.css__2026-08-17_091511-NyxsPS.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T09:15:11+00:00",
+        "created_ts": 1786958111,
+        "created_mt": 1786958111.8134921,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+            "size": 33445,
+            "sha256": "9ec86904058d4d8c85226b95da288c137602bf5f3974620c7b239c2a69619bdd"
+        }
+    },
+    {
+        "id": "1786959983-aXn5fSAw",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.css",
+        "backup_path": "files\/f76b4362_styles.css__2026-08-17_094623-UmA21j.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T09:46:23+00:00",
+        "created_ts": 1786959983,
+        "created_mt": 1786959983.7961631,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.css",
+            "size": 42519,
+            "sha256": "21827b972ff64c4dbd623d4a8d2b0159814a1356cf3ac6325eccd41ef02d5527"
+        }
+    },
+    {
+        "id": "1786959983-8IKGZWwZ",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+        "backup_path": "files\/a7df86d0_styles.min_.css__2026-08-17_094623-a7fWor.bak",
+        "task_id": "",
+        "created_at": "2026-08-17T09:46:23+00:00",
+        "created_ts": 1786959983,
+        "created_mt": 1786959983.826776,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/assets\/css\/styles.min.css",
+            "size": 33525,
+            "sha256": "71718157e3d74aa8a733539c6d7fbb08dbcfc82a8bef5f79ac89fe209e1a6bff"
+        }
+    },
+    {
+        "id": "1787118425-a3xoWFpG",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/inc\/post-types.php",
+        "backup_path": "files\/a81911e2_post-types.php__2026-08-19_054705-6TuwOb.bak",
+        "task_id": "",
+        "created_at": "2026-08-19T05:47:05+00:00",
+        "created_ts": 1787118425,
+        "created_mt": 1787118425.364399,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/inc\/post-types.php",
+            "size": 1136,
+            "sha256": "29f1c39ae6d5622abef54a1d57a09cb395e612b6ce36b1f8a5432c1e1c34d8c8"
+        }
+    },
+    {
+        "id": "1787118478-kWNsgy45",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/template-parts\/sections\/speakers.php",
+        "backup_path": "files\/c905ac88_speakers.php__2026-08-19_054758-WIDFag.bak",
+        "task_id": "",
+        "created_at": "2026-08-19T05:47:58+00:00",
+        "created_ts": 1787118478,
+        "created_mt": 1787118478.1282549,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/template-parts\/sections\/speakers.php",
+            "size": 2796,
+            "sha256": "46f4547ffbe7eab303a6bccbe272dd3213789eb4eef9cec4cec154ecb2924fea"
+        }
+    },
+    {
+        "id": "1787118505-z58JUVhi",
+        "type": "file",
+        "reason": "pre:e2m\/update-theme-file",
+        "target": "\/Users\/atulrathour\/Local Sites\/vistaraaj\/app\/public\/wp-content\/themes\/vistara\/template-parts\/sections\/gallery.php",
+        "backup_path": "files\/511ae315_gallery.php__2026-08-19_054825-rpwO2b.bak",
+        "task_id": "",
+        "created_at": "2026-08-19T05:48:25+00:00",
+        "created_ts": 1787118505,
+        "created_mt": 1787118505.4822249,
+        "user_id": 1,
+        "user_login": "atul",
+        "meta": {
+            "existed": true,
+            "rel_path": "wp-content\/themes\/vistara\/template-parts\/sections\/gallery.php",
+            "size": 4349,
+            "sha256": "9fd9ed25e9aec37bf549cdb811d2bb25123806af3a3ed69a31b69a0d80281ddb"
+        }
+    }
+]

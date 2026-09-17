@@ -1,0 +1,176 @@
+  {
+    "key": "group_about_vistara_page",
+    "title": "Page: About Vistara",
+    "fields": [
+      {
+        "key": "field_hero_section",
+        "label": "Hero Section",
+        "name": "hero_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_hero_badge_text",
+            "label": "Badge Text",
+            "name": "badge_text",
+            "type": "text",
+            "default_value": "THE STORY BEHIND VISTARA",
+            "placeholder": "e.g. THE STORY BEHIND VISTARA"
+          },
+          {
+            "key": "field_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "BUILT BY AGENCY LEADERS, FOR AGENCY LEADERS",
+            "placeholder": "Enter section main title..."
+          },
+          {
+            "key": "field_hero_subtitle",
+            "label": "Hero Subtitle",
+            "name": "hero_subtitle",
+            "type": "text",
+            "default_value": "Navigating the AI revolution before it's too late!",
+            "placeholder": "Enter subtitle..."
+          },
+          {
+            "key": "field_hero_cta",
+            "label": "Primary CTA Button",
+            "name": "hero_cta",
+            "type": "link",
+            "return_format": "array"
+          }
+        ]
+      },
+      {
+        "key": "field_mission_origin_section",
+        "label": "Our Mission & Origin Section",
+        "name": "mission_origin_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_mission_badge",
+            "label": "Section Badge",
+            "name": "section_badge",
+            "type": "text",
+            "default_value": "OUR MISSION"
+          },
+          {
+            "key": "field_mission_title",
+            "label": "Section Main Heading",
+            "name": "section_title",
+            "type": "text",
+            "default_value": "WHY VISTARA WAS CREATED"
+          },
+          {
+            "key": "field_mission_terminal_quote",
+            "label": "Terminal Highlight Line",
+            "name": "terminal_quote",
+            "type": "text",
+            "default_value": "Vistara means Limitless Opportunity."
+          },
+          {
+            "key": "field_mission_content",
+            "label": "Mission Description / Content",
+            "name": "mission_content",
+            "type": "wysiwyg",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+          },
+          {
+            "key": "field_origin_highlights",
+            "label": "Origin Highlights / Cards",
+            "name": "origin_highlights",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add Highlight Card",
+            "sub_fields": [
+              {
+                "key": "field_highlight_number",
+                "label": "Highlight Number / Icon",
+                "name": "highlight_number",
+                "type": "text",
+                "default_value": "01"
+              },
+              {
+                "key": "field_highlight_title",
+                "label": "Highlight Title",
+                "name": "highlight_title",
+                "type": "text"
+              },
+              {
+                "key": "field_highlight_description",
+                "label": "Highlight Description",
+                "name": "highlight_description",
+                "type": "textarea",
+                "rows": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "field_cta_section",
+        "label": "Call to Action (CTA) Section",
+        "name": "cta_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_cta_badge",
+            "label": "CTA Section Badge",
+            "name": "cta_badge",
+            "type": "text",
+            "default_value": "READY TO LEAD?"
+          },
+          {
+            "key": "field_cta_headline",
+            "label": "CTA Headline",
+            "name": "cta_headline",
+            "type": "text",
+            "default_value": "DON'T SCRAMBLE IN 2027. OWN THE FUTURE NOW."
+          },
+          {
+            "key": "field_cta_subheadline",
+            "label": "CTA Subheadline / Copy",
+            "name": "cta_subheadline",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Join top agency operators and AI experts in shaping the next decade of digital agency work."
+          },
+          {
+            "key": "field_cta_button",
+            "label": "Primary Button",
+            "name": "cta_button",
+            "type": "link",
+            "return_format": "array"
+          },
+          {
+            "key": "field_secondary_button",
+            "label": "Secondary Button",
+            "name": "secondary_button",
+            "type": "link",
+            "return_format": "array"
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page",
+          "operator": "==",
+          "value": "263"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

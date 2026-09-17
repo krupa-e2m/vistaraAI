@@ -1,0 +1,134 @@
+{
+  "key": "group_contact_organizers_page",
+    "title": "Page: Contact Organizers",
+    "fields": [
+      {
+        "key": "field_contact_hero_section",
+        "label": "Hero Section",
+        "name": "hero_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_contact_hero_badge",
+            "label": "Badge Text",
+            "name": "badge_text",
+            "type": "text",
+            "default_value": "CONNECT WITH US",
+            "placeholder": "e.g. CONNECT WITH US"
+          },
+          {
+            "key": "field_contact_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "GET IN TOUCH WITH THE VISTARA TEAM",
+            "placeholder": "Enter section title..."
+          },
+          {
+            "key": "field_contact_hero_subtitle",
+            "label": "Hero Subtitle",
+            "name": "hero_subtitle",
+            "type": "text",
+            "default_value": "Have questions about tickets, speaking, sponsorships, or team passes?",
+            "placeholder": "Enter subtitle..."
+          }
+        ]
+      },
+      {
+        "key": "field_contact_info_section",
+        "label": "Inquiry Cards Section",
+        "name": "contact_info_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_contact_cards",
+            "label": "Contact Cards",
+            "name": "cards",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add Contact Card",
+            "sub_fields": [
+              {
+                "key": "field_card_category",
+                "label": "Category Title",
+                "name": "category_title",
+                "type": "text",
+                "default_value": "General & Ticket Inquiries"
+              },
+              {
+                "key": "field_card_email",
+                "label": "Direct Email",
+                "name": "email",
+                "type": "email",
+                "placeholder": "info@joinvistara.com"
+              },
+              {
+                "key": "field_card_description",
+                "label": "Description",
+                "name": "description",
+                "type": "textarea",
+                "rows": 2,
+                "placeholder": "For ticket availability, group rates, or schedule questions."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "field_contact_form_section",
+        "label": "Form Section",
+        "name": "form_section",
+        "type": "group",
+        "layout": "block",
+        "sub_fields": [
+          {
+            "key": "field_form_badge",
+            "label": "Section Badge",
+            "name": "badge_text",
+            "type": "text",
+            "default_value": "SEND A MESSAGE"
+          },
+          {
+            "key": "field_form_title",
+            "label": "Form Heading",
+            "name": "title",
+            "type": "text",
+            "default_value": "DIRECT INQUIRY"
+          },
+          {
+            "key": "field_form_recipient",
+            "label": "Form Recipient Email",
+            "name": "recipient_email",
+            "type": "email",
+            "instructions": "Messages from this form are sent to this address.",
+            "default_value": "info@joinvistara.com"
+          },
+          {
+            "key": "field_form_submit_label",
+            "label": "Submit Button Label",
+            "name": "submit_label",
+            "type": "text",
+            "default_value": "SEND QUERY"
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page",
+          "operator": "==",
+          "value": "265"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

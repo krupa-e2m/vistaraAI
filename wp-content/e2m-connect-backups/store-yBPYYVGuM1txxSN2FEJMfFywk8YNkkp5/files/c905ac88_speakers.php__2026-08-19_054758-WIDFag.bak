@@ -1,0 +1,62 @@
+<?php
+/**
+ * Section: speakers  (FC layout `speakers`)
+ *
+ * Source fragment : spec/fragments/home/09-speakers.html  (home / section id `speakers`)
+ * Transplanted verbatim. The 11 .sp cards become the `speakers` repeater around ONE prototype
+ * card. The source's hardcoded id="speakers" (footer-nav anchor) now comes from
+ * common_settings.sec_id — set it to `speakers` on this row.
+ *
+ * NOTE ON THE PROTOTYPE CLASS: the source's first card is class="sp rv " WITH a trailing
+ * space (the delay slot is empty for every 4th card). The template reproduces that byte for
+ * byte — 'sp rv ' plus d1/d2/d3 derived from index % 4, exactly matching the source's
+ * '', d1, d2, d3, '', d1, … sequence across the 11 cards.
+ *
+ * JS hooks carried by this markup: .rv scroll-reveal class on every card.
+ *
+ * LINT (justified WARNs — lint_partial.py --fragment): <div> 5<35, <h3> 1<11, <p> 2<12,
+ *   <img> 1<11 — the 11-card repeater collapsing to one prototype.
+ *
+ * @package Vistara
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+if ( vst_section_hidden() ) {
+	return;
+}
+
+$vst_eyebrow = get_sub_field( 'eyebrow' );
+$vst_heading = get_sub_field( 'heading' );
+$vst_body    = get_sub_field( 'body' );
+$vst_sec     = vst_section_setup(
+	array(
+		'class'  => 'sec',
+		'layout' => 'speakers',
+	)
+);
+
+echo $vst_sec['css']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- generated + value-whitelisted in vst_section_setup().
+?>
+<section<?php echo $vst_sec['attrs']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped in vst_section_setup(). ?>>
+  <div class="wrap center">
+    <span class="marker rv" style="justify-content:center"><i></i><b>//</b> <?php echo esc_html( $vst_eyebrow ); ?></span>
+    <h2 class="h-sec rv d1" style="margin-top:1.2rem"><?php echo vst_accent_html( $vst_heading ); ?></h2>
+    <p class="lede rv d2" style="margin:1.3rem auto 0"><?php echo vst_multiline_html( $vst_body ); ?></p>
+    <div class="sp-grid">
+      <?php $vst_sp_i = 0; ?>
+      <?php while ( have_rows( 'speakers' ) ) : the_row(); ?>
+      <?php
+      $vst_photo_id  = get_sub_field( 'photo' );
+      $vst_photo_src = vst_image_url( $vst_photo_id );
+      $vst_photo_alt = vst_image_alt( $vst_photo_id, (string) get_sub_field( 'name' ) );
+      ?>
+      <div class="sp rv <?php echo esc_attr( $vst_sp_i % 4 ? 'd' . ( $vst_sp_i % 4 ) : '' ); ?>">
+        <div class="ph"><?php if ( $vst_photo_src ) : ?><img src="<?php echo esc_url( $vst_photo_src ); ?>" alt="<?php echo esc_attr( $vst_photo_alt ); ?>"><?php endif; ?></div>
+        <div class="nm"><h3><?php echo esc_html( get_sub_field( 'name' ) ); ?></h3><p><?php echo esc_html( get_sub_field( 'role' ) ); ?></p></div>
+      </div>
+      <?php ++$vst_sp_i; ?>
+      <?php endwhile; ?>
+    </div>
+  </div>
+</section>
